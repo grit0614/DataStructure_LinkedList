@@ -7,7 +7,7 @@ public class Node {
 	
 	public Node () {
 		prev = next = null;
-		str="empty";
+		str = "empty";
 	}
 	
 	public Node(Node prev, Node next, String str) {

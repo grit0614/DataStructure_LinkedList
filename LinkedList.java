@@ -89,9 +89,6 @@ public class LinkedList {
 			if(temp.getString() == value) { 
 				// map the previous node with the next node, excluding the designated node itself
 				
-				// *******************************************
-				// this part has to be re-done (wrong mapping)
-				// *******************************************
 				temp.getPrev().setNext(temp.getNext());
 				temp.getNext().setPrev(temp.getPrev());
 				return false;
