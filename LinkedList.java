@@ -17,17 +17,30 @@ public class LinkedList {
 		trailer.setPrev(nodeNew);
 	}
 	
+	// searches for the nth indexed node, then creates a new node,
+	// and map it to the (n-1)th node position to complete the process
 	public boolean addBefore(int n, String value) {
+		// starting from the very left node
 		Node temp = header.getNext();
+		// declare an arbitrary index value to keep track of the node position
 		int index = 0;
+		// repeat until the loop has reached the very last node(or desired index value is found)
 		while(temp != trailer) {
+			// if the declared index value matches the designated index value,
 			if(index==n) {
+				// create a new node which is mapped to (n-1)th node and nth node,
 				Node nodeNew = new Node(temp.getPrev(), temp, value);
+				// then insert the created node into (n-1)th node position.
+				// map the (n-1)th node to the node we've just created
 				temp.getPrev().setNext(nodeNew);
+				// map the nth node to the node we've just created
 				temp.setPrev(nodeNew);
+				// then aborts the process
 				return true;
 			}
+			// if the desired index value is not found, move on to the next node.
 			temp=temp.getNext();
+			// increase the value of the arbitrary index by 1, then proceed.
 			index++;
 		}
 		return false;
@@ -56,27 +69,6 @@ public class LinkedList {
 		}
 		return true;
 	}
-	
-	/*
-	// Note: if more than one character of same kind exists, this method needs to delete the very last one,
-	//       which the method I've made currently doesn't
-	// searches the designated string value within the nodes, then deletes it by mapping (n-1) node with (n+1) node
-	public boolean remove(String value) {
-		Node temp = header.getNext();
-		// repeat the process from header to trailer
-		while(temp != trailer) {
-			// if the string value of the node matches the input
-			if(temp.getString() == value) { 
-				// map the previous node with the next node, excluding the designated node itself
-				temp.getPrev().setNext(temp.getNext());
-				temp.getNext().setPrev(temp.getPrev());
-				return false;
-			}
-			temp=temp.getNext();
-		}
-		return true;
-	}
-	*/
 	
 	// searches the designated string value within the nodes, then deletes it by mapping (n-1) node with (n+1) node
   // in order to get rid of the right-most element which corresponds to the criteria, the search method has been
@@ -109,8 +101,10 @@ public class LinkedList {
 			if(temp.getString() == before) {
 				// replaces the String value using setString method
 				temp.setString(after);
+				// then aborts the process
 				return false;
 			}
+			// move on to the next node(the one on the left side of the node we've just investigated)
 			temp=temp.getPrev();
 		}
 		return true;
@@ -123,7 +117,7 @@ public class LinkedList {
 		// while temp reaches the header
 		while(temp != header) {
 			System.out.print(temp.getString() + " ");
-			// repeat the process accordingly
+			// move on to the next node(the one on the left side of the node we've just investigated)
 			temp = temp.getPrev();
 		}
 		System.out.println("");
